@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advanced CSS3 & JavaScript Demo</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to the Interactive Experience 🚀</h1>
+
+    <form id="userForm">
+      <input type="text" id="username" placeholder="Enter your name" required />
+      <span id="nameFeedback"></span>
+      <button type="submit">Save Name</button>
+    </form>
+
+    <button id="themeToggle">🌗 Toggle Dark Mode</button>
+    <button id="openModal">Open Cool Modal 🎉</button>
+  </div>
+
+  <div id="modal" class="modal">
+    <div class="modal-content bounce-in">
+      <span id="closeModal">&times;</span>
+      <h2>Hey <span id="userDisplay">Friend</span>!</h2>
+      <p>This modal is powered by JavaScript + CSS animations!</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
