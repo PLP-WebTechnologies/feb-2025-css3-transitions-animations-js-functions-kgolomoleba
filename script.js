@@ -1,62 +1,80 @@
-// DOM elements
-const themeToggle = document.getElementById('themeToggle');
+// Get elements
+const loginForm = document.getElementById('login-form');
 const usernameInput = document.getElementById('username');
-const userForm = document.getElementById('userForm');
-const userDisplay = document.getElementById('userDisplay');
-const nameFeedback = document.getElementById('nameFeedback');
-const modal = document.getElementById('modal');
-const openModal = document.getElementById('openModal');
-const closeModal = document.getElementById('closeModal');
+const dashboard = document.getElementById('dashboard');
+const userInfo = document.querySelector('.user-info');
+const eventsList = document.getElementById('events-list');
+const aboutBtn = document.getElementById('about-btn');
+const logoutBtn = document.getElementById('logout-btn');
+const aboutModal = document.getElementById('about-modal');
+const modalClose = document.getElementById('modal-close');
 
-// Load stored preferences on startup
-window.onload = () => {
-  const savedTheme = localStorage.getItem('theme');
-  const savedName = localStorage.getItem('username');
+// Sample Upcoming Events
+const events = [
+  {
+    title: "Cape Town Sunset Fest",
+    date: "2025-12-15",
+    location: "Clifton Beach, Cape Town",
+  },
+  {
+    title: "Joburg Street Vibes",
+    date: "2025-11-30",
+    location: "Maboneng Precinct, Johannesburg",
+  },
+  {
+    title: "Durban Summer Splash",
+    date: "2025-12-22",
+    location: "uShaka Marine, Durban",
+  },
+];
 
-  if (savedTheme === 'dark') {
-    document.body.classList.add('dark');
-  }
-
-  if (savedName) {
-    userDisplay.textContent = savedName;
-    usernameInput.value = savedName;
-  }
-};
-
-// Toggle dark mode and save preference
-themeToggle.addEventListener('click', () => {
-  document.body.classList.toggle('dark');
-  const theme = document.body.classList.contains('dark') ? 'dark' : 'light';
-  localStorage.setItem('theme', theme);
-});
-
-// Form submission
-userForm.addEventListener('submit', (e) => {
+// Handle Login
+loginForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const name = usernameInput.value.trim();
-
-  if (name.length < 3) {
-    nameFeedback.textContent = 'Name must be at least 3 characters.';
-    return;
+  if (name) {
+    loginForm.classList.add('hidden');
+    dashboard.classList.remove('hidden');
+    userInfo.textContent = `Hello, ${name}! Here are your upcoming vibes:`;
+    showEvents();
   }
-
-  localStorage.setItem('username', name);
-  userDisplay.textContent = name;
-  nameFeedback.textContent = 'Name saved ✅';
-  nameFeedback.style.color = 'green';
 });
 
-// Open and close modal
-openModal.addEventListener('click', () => {
-  modal.style.display = 'block';
+// Show Events
+function showEvents() {
+  eventsList.innerHTML = '';
+  events.forEach(event => {
+    const eventCard = document.createElement('div');
+    eventCard.className = 'event-card';
+    eventCard.innerHTML = `
+      <h3>${event.title}</h3>
+      <p><strong>Date:</strong> ${event.date}</p>
+      <p><strong>Location:</strong> ${event.location}</p>
+    `;
+    eventsList.appendChild(eventCard);
+  });
+}
+
+// About Us Modal
+aboutBtn.addEventListener('click', () => {
+  aboutModal.classList.add('show');
 });
 
-closeModal.addEventListener('click', () => {
-  modal.style.display = 'none';
+// Close Modal
+modalClose.addEventListener('click', () => {
+  aboutModal.classList.remove('show');
 });
 
+// Close modal if clicked outside
 window.addEventListener('click', (e) => {
-  if (e.target == modal) {
-    modal.style.display = 'none';
+  if (e.target === aboutModal) {
+    aboutModal.classList.remove('show');
   }
+});
+
+// Logout
+logoutBtn.addEventListener('click', () => {
+  dashboard.classList.add('hidden');
+  loginForm.classList.remove('hidden');
+  usernameInput.value = '';
 });

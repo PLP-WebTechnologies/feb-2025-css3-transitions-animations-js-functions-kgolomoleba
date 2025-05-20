@@ -1,101 +1,179 @@
+/* General Styles */
 body {
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #f4f4f4;
-    transition: background-color 0.4s ease;
-    margin: 0;
-    padding: 0;
-    color: #333;
-  }
-  
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.container {
+  background-color: #ffffff10;
+  backdrop-filter: blur(10px);
+  padding: 40px;
+  border-radius: 20px;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+}
+
+.main-title {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: #fff;
+}
+
+.main-title span {
+  color: #ffcc00;
+}
+
+/* Form Styling */
+.form-box input {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.action-btn {
+  width: 100%;
+  padding: 15px;
+  background-color: #ffcc00;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  color: #333;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.action-btn:hover {
+  background-color: #f1b800;
+}
+
+/* Dashboard */
+.hidden {
+  display: none;
+}
+
+.user-info {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+.events-list {
+  margin-top: 20px;
+}
+
+/* Event Cards */
+.event-card {
+  background-color: #fff;
+  color: #333;
+  border-radius: 12px;
+  padding: 15px 20px;
+  margin: 15px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  transition: transform 0.2s ease;
+}
+
+.event-card:hover {
+  transform: scale(1.02);
+}
+
+.event-card h3 {
+  margin-bottom: 5px;
+  color: #4b0082;
+}
+
+/* Buttons */
+.btn-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.secondary-btn {
+  padding: 12px 20px;
+  background-color: #ffffff20;
+  border: 2px solid #fff;
+  color: #fff;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.secondary-btn:hover {
+  background-color: #fff;
+  color: #333;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-content {
+  background-color: #fff;
+  color: #333;
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 500px;
+  width: 90%;
+  text-align: left;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  color: #999;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.close-btn:hover {
+  color: #ff3333;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
   .container {
-    text-align: center;
-    padding: 50px;
+    padding: 30px 20px;
   }
-  
-  input[type="text"] {
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    width: 250px;
+
+  .btn-group {
+    flex-direction: column;
+    gap: 10px;
   }
-  
-  button {
-    margin-top: 10px;
-    padding: 12px 24px;
-    font-size: 16px;
-    border: none;
-    background-color: #3498db;
-    color: white;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s;
+
+  .secondary-btn,
+  .action-btn {
+    width: 100%;
   }
-  
-  button:hover {
-    background-color: #2980b9;
-    transform: scale(1.05);
-  }
-  
-  /* Dark Mode */
-  body.dark {
-    background-color: #1c1c1c;
-    color: white;
-  }
-  
-  body.dark input {
-    background-color: #333;
-    color: white;
-    border-color: #444;
-  }
-  
-  body.dark button {
-    background-color: #444;
-  }
-  
-  /* Modal */
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 999;
-    left: 0; top: 0;
-    width: 100%; height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-  }
-  
-  .modal-content {
-    background-color: white;
-    margin: 15% auto;
-    padding: 30px;
-    width: 60%;
-    border-radius: 10px;
-    text-align: center;
-    position: relative;
-  }
-  
-  /* Animations */
-  @keyframes bounce {
-    0% { transform: scale(0.8); opacity: 0; }
-    50% { transform: scale(1.1); opacity: 1; }
-    100% { transform: scale(1); }
-  }
-  
-  .bounce-in {
-    animation: bounce 0.5s ease-out;
-  }
-  
-  #closeModal {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 24px;
-    cursor: pointer;
-  }
-  
-  /* Feedback */
-  #nameFeedback {
-    display: block;
-    margin: 5px 0 10px;
-    color: red;
-  }
-  
+}
